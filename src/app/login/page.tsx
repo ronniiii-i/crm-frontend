@@ -1,7 +1,7 @@
 // src/app/login/page.tsx
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useAuth } from "@/hooks/useAuth";
 import { useRouter } from "next/navigation";
 
@@ -9,11 +9,13 @@ export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const { login } = useAuth();
+  const { login, token, isLoading } = useAuth();
   const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    console.log("submit");
+    
     try {
       await login(email, password);
       router.push("/dashboard");
@@ -22,6 +24,14 @@ export default function LoginPage() {
       console.error(err);
     }
   };
+
+  // useEffect(() => {
+  //   if (!isLoading && token) {
+  //     router.replace("/dashboard");
+  //   }
+  // }, [token, isLoading, router]);
+
+  // if (isLoading || token) return null;
 
   return (
     <div className="min-h-screen flex items-center justify-center">

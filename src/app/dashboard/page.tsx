@@ -1,7 +1,10 @@
-import React from "react";
+// src/app/dashboard/page.tsx
+// import withAuth from "@/hoc/withAuth";
 
-function page() {
-  return <div>page</div>;
+export default function DashboardPage() {
+  return (
+      <div>Dashboard Content</div>
+  );
 }
 
-export default page;
+// export default withAuth(DashboardPage)

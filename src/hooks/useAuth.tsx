@@ -1,27 +1,33 @@
-import { useState } from "react";
+// src/hooks/useAuth.tsx
+"use client";
+
+import { useState, useEffect } from "react";
+import { login as loginAPI, logout as logoutAPI, getToken } from "@/lib/auth";
 
 export function useAuth() {
   const [token, setToken] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    setToken(getToken() ?? null);
+    setIsLoading(false);
+  }, []);
 
   const login = async (email: string, password: string) => {
-    const res = await fetch("http://localhost:3030/auth/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password }),
-    });
-
-    if (!res.ok) throw new Error("Invalid credentials");
-
-    const data = await res.json();
-    setToken(data.access_token);
-    localStorage.setItem("token", data.access_token);
-    return data.access_token;
+    try {
+      const accessToken = await loginAPI(email, password);
+      setToken(accessToken);
+      return accessToken;
+    } catch (error) {
+      setToken(null);
+      throw error;
+    }
   };
 
   const logout = () => {
+    logoutAPI();
     setToken(null);
-    localStorage.removeItem("token");
   };
 
-  return { token, login, logout };
+  return { token, isLoading, login, logout };
 }

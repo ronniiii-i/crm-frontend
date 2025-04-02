@@ -25,13 +25,16 @@ export function useAuth() {
   }, []);
 
   const verifyToken = async (token: string) => {
-    // Implement token verification with your backend
     const res = await fetch("http://localhost:3030/auth/verify", {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
+
     if (!res.ok) throw new Error("Invalid token");
+
+    const data = await res.json();
+    return data.user; // Optional: Return user data if needed
   };
 
   const login = async (email: string, password: string) => {

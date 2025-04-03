@@ -19,7 +19,11 @@ export async function login(email: string, password: string) {
     credentials: 'include' // Important for cookies
   });
   
-  if (!res.ok) throw new Error('Invalid credentials');
+  // if (!res.ok) throw new Error('Invalid credentials');
+  if (!res.ok) {
+    const error = await res.json();
+    throw new Error(error.message);
+  }
   
   const data = await res.json();
   

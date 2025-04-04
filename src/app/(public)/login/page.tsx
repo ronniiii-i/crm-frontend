@@ -20,7 +20,8 @@ export default function LoginPage() {
     setIsSubmitting(true);
 
     try {
-      await login(email, password);
+      const { user } = await login(email, password);
+      console.log("Logged in as:", user.role); // Log role for debugging
       router.push("/dashboard");
     } catch (err) {
       setError(err instanceof Error ? err.message : "Login failed");

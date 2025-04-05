@@ -1,40 +1,62 @@
 import { NextRequest } from "next/server";
 
-// src/lib/auth.ts
-export async function register(email: string, password: string) {
+export async function register(
+  email: string,
+  password: string,
+  name: string
+): Promise<{
+  success: boolean;
+  message: string;
+}> {
   const res = await fetch("http://localhost:3030/auth/register", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ email, password }),
+    body: JSON.stringify({ email, password, name }),
   });
-  if (!res.ok) throw new Error("Registration failed");
+
+  if (!res.ok) {
+    const error = await res.json();
+    throw new Error(error.message || "Registration failed");
+  }
+
   return res.json();
 }
 
-export async function login(email: string, password: string) {
-  const res = await fetch('http://localhost:3030/auth/login', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+export async function login(
+  email: string,
+  password: string
+): Promise<{
+  accessToken: string;
+  user: {
+    id: string;
+    email: string;
+    role: string;
+    isVerified: boolean;
+  };
+}> {
+  const res = await fetch("http://localhost:3030/auth/login", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ email, password }),
-    credentials: 'include' // Important for cookies
+    credentials: "include",
   });
-  
-  // if (!res.ok) throw new Error('Invalid credentials');
+
   if (!res.ok) {
     const error = await res.json();
-    throw new Error(error.message);
+    throw new Error(error.message || "Login failed");
   }
-  
+
   const data = await res.json();
-  
-  // Store token in both cookie and localStorage for redundancy
-  if (typeof window !== 'undefined') {
+
+  if (typeof window !== "undefined") {
     document.cookie = `token=${data.accessToken}; Path=/; Secure; SameSite=Strict`;
-    localStorage.setItem('token', data.accessToken);
+    localStorage.setItem("token", data.accessToken);
   }
-  
+
   return data;
 }
+
+// ... keep existing getToken and logout functions
 
 export function getToken(request?: NextRequest) {
   if (request) {

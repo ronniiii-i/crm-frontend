@@ -5,7 +5,7 @@ import { getToken } from "./lib/auth";
 import { jwtDecode } from "jwt-decode"; // You'll need to install this package
 
 // Public routes that don't require authentication
-const publicRoutes = ["/", "/login", "/register"];
+const publicRoutes = ["/", "/login", "/register", "/verify-email", "/forgot-password", "/reset-password"];
 
 // Role-based route access
 const roleBasedRoutes = {

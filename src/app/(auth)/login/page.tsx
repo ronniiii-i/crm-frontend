@@ -67,12 +67,23 @@ export default function LoginPage() {
           />
         </div>
         <div>
-          <label
-            htmlFor="password"
-            className="block text-sm font-medium text-gray-700"
-          >
-            Password
-          </label>
+          <div className="flex justify-between items-center">
+            <label
+              htmlFor="password"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Password
+            </label>
+            <div className="text-right">
+              <button
+                type="button"
+                onClick={() => router.push("/forgot-password")}
+                className="text-sm text-blue-500 hover:underline"
+              >
+                Forgot password?
+              </button>
+            </div>
+          </div>
           <input
             id="password"
             type="password"
@@ -94,6 +105,13 @@ export default function LoginPage() {
             "Sign in"
           )}
         </button>
+        {/* don't have an account? sign up. this should lead to the path /register */}
+        <p className="text-sm text-center text-gray-600">
+          Don&apos;t have an account?{" "}
+          <a href="/register" className="text-blue-600 hover:underline">
+            Sign up
+          </a>
+        </p>
       </form>
     </div>
   );

@@ -32,7 +32,7 @@ export function PasswordStrength({ password }: { password: string }) {
   return (
     <div className="mt-2">
       <div className="flex gap-1 h-1 mb-1">
-        {[1, 2, 3, 4].map((i) => (
+        {[0, 1, 2, 3, 4].map((i) => (
           <div
             key={i}
             className={`flex-1 rounded-full ${

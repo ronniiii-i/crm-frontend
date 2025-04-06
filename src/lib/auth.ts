@@ -47,10 +47,6 @@ export async function login(
   }
 
   const data = await res.json();
-    console.log("====================================");
-    console.log(data);
-    console.log("====================================");
-
   if (typeof window !== "undefined") {
     document.cookie = `token=${data.accessToken}; Path=/; Secure; SameSite=Strict`;
     localStorage.setItem("token", data.accessToken);

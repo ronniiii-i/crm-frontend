@@ -4,6 +4,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Loader2, CheckCircle2 } from "lucide-react";
+export const dynamic = "force-dynamic";
 
 export default function ForgotPasswordPage() {
   const [email, setEmail] = useState("");

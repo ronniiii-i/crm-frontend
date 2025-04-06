@@ -70,7 +70,10 @@ export function useAuth() {
   const login = async (email: string, password: string) => {
     try {
       const { accessToken, user } = await loginAPI(email, password);
+      console.log("Login API response - isVerified:", user?.isVerified);
+
       if (!user.isVerified) {
+        // console.error("User is not verified:", user);
         throw new Error("Please verify your email before logging in");
       }
 

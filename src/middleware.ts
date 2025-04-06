@@ -36,6 +36,9 @@ export default async function middleware(request: NextRequest) {
         [key: string]: unknown; // Add other properties if needed
       }
       const decoded = jwtDecode<DecodedToken>(token);
+      console.log('====================================');
+      console.log(decoded);
+      console.log('====================================');
       const userRole = decoded.role;
 
       // Check role-based access

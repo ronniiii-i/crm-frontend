@@ -47,6 +47,9 @@ export async function login(
   }
 
   const data = await res.json();
+    console.log("====================================");
+    console.log(data);
+    console.log("====================================");
 
   if (typeof window !== "undefined") {
     document.cookie = `token=${data.accessToken}; Path=/; Secure; SameSite=Strict`;
@@ -56,7 +59,6 @@ export async function login(
   return data;
 }
 
-// ... keep existing getToken and logout functions
 
 export function getToken(request?: NextRequest) {
   if (request) {

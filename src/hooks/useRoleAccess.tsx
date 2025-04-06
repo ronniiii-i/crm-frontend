@@ -26,7 +26,7 @@ export function useRoleAccess() {
     return {
       userRole: null,
       canAccess: () => false,
-      requiresRole: (requiredRole: AccessLevel) => () => false,
+      requiresRole: () => () => false,
     };
   }
 

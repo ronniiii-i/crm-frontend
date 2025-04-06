@@ -1,65 +1,14 @@
 // app/page.tsx
 import Link from "next/link";
 import Image from "next/image";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
-      {/* Navigation */}
-      <nav className="bg-white dark:bg-gray-800 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-16">
-            <div className="flex items-center">
-              <div className="flex-shrink-0 flex items-center">
-                <svg
-                  className="h-8 w-8 text-blue-600"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2z"
-                  />
-                </svg>
-                <span className="ml-2 text-xl font-bold text-gray-900 dark:text-white">
-                  EnterpriseCRM
-                </span>
-              </div>
-            </div>
-            <div className="hidden sm:ml-6 sm:flex sm:items-center space-x-8">
-              <Link
-                href="#features"
-                className="text-gray-500 dark:text-gray-300 hover:text-gray-700 dark:hover:text-white px-3 py-2 text-sm font-medium"
-              >
-                Features
-              </Link>
-              <Link
-                href="#modules"
-                className="text-gray-500 dark:text-gray-300 hover:text-gray-700 dark:hover:text-white px-3 py-2 text-sm font-medium"
-              >
-                Modules
-              </Link>
-              <Link
-                href="#pricing"
-                className="text-gray-500 dark:text-gray-300 hover:text-gray-700 dark:hover:text-white px-3 py-2 text-sm font-medium"
-              >
-                Pricing
-              </Link>
-            </div>
-            <div className="flex items-center">
-              <Link
-                href="/login"
-                className="bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:focus:ring-offset-gray-800"
-              >
-                Login
-              </Link>
-            </div>
-          </div>
-        </div>
-      </nav>
+      {/* Navbar */}
+      <Navbar />
 
       {/* Hero Section */}
       <div className="relative bg-white dark:bg-gray-800 overflow-hidden">
@@ -100,7 +49,7 @@ export default function Home() {
             </main>
           </div>
         </div>
-        <div className="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
+        <div className="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2 z-10">
           <Image
             className="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full"
             src="https://picsum.photos/1600/900?random=1"
@@ -393,164 +342,7 @@ export default function Home() {
       </div>
 
       {/* Footer */}
-      <footer className="bg-gray-800">
-        <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
-          <div className="xl:grid xl:grid-cols-3 xl:gap-8">
-            <div className="space-y-8 xl:col-span-1">
-              <div className="flex items-center">
-                <svg
-                  className="h-8 w-8 text-blue-500"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2z"
-                  />
-                </svg>
-                <span className="ml-2 text-xl font-bold text-white">
-                  EnterpriseCRM
-                </span>
-              </div>
-              <p className="text-gray-300 text-base">
-                The complete business management platform for modern
-                enterprises.
-              </p>
-            </div>
-            <div className="mt-12 grid grid-cols-2 gap-8 xl:mt-0 xl:col-span-2">
-              <div className="md:grid md:grid-cols-2 md:gap-8">
-                <div>
-                  <h3 className="text-sm font-semibold text-gray-300 tracking-wider uppercase">
-                    Product
-                  </h3>
-                  <ul className="mt-4 space-y-4">
-                    <li>
-                      <Link
-                        href="#"
-                        className="text-base text-gray-400 hover:text-white"
-                      >
-                        Features
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        href="#"
-                        className="text-base text-gray-400 hover:text-white"
-                      >
-                        Modules
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        href="#"
-                        className="text-base text-gray-400 hover:text-white"
-                      >
-                        Pricing
-                      </Link>
-                    </li>
-                  </ul>
-                </div>
-                <div className="mt-12 md:mt-0">
-                  <h3 className="text-sm font-semibold text-gray-300 tracking-wider uppercase">
-                    Company
-                  </h3>
-                  <ul className="mt-4 space-y-4">
-                    <li>
-                      <Link
-                        href="#"
-                        className="text-base text-gray-400 hover:text-white"
-                      >
-                        About
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        href="#"
-                        className="text-base text-gray-400 hover:text-white"
-                      >
-                        Blog
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        href="#"
-                        className="text-base text-gray-400 hover:text-white"
-                      >
-                        Careers
-                      </Link>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <div className="md:grid md:grid-cols-2 md:gap-8">
-                <div>
-                  <h3 className="text-sm font-semibold text-gray-300 tracking-wider uppercase">
-                    Support
-                  </h3>
-                  <ul className="mt-4 space-y-4">
-                    <li>
-                      <Link
-                        href="#"
-                        className="text-base text-gray-400 hover:text-white"
-                      >
-                        Help Center
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        href="#"
-                        className="text-base text-gray-400 hover:text-white"
-                      >
-                        Documentation
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        href="#"
-                        className="text-base text-gray-400 hover:text-white"
-                      >
-                        Community
-                      </Link>
-                    </li>
-                  </ul>
-                </div>
-                <div className="mt-12 md:mt-0">
-                  <h3 className="text-sm font-semibold text-gray-300 tracking-wider uppercase">
-                    Legal
-                  </h3>
-                  <ul className="mt-4 space-y-4">
-                    <li>
-                      <Link
-                        href="#"
-                        className="text-base text-gray-400 hover:text-white"
-                      >
-                        Privacy
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        href="#"
-                        className="text-base text-gray-400 hover:text-white"
-                      >
-                        Terms
-                      </Link>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="mt-12 border-t border-gray-700 pt-8">
-            <p className="text-base text-gray-400 text-center">
-              &copy; {new Date().getFullYear()} EnterpriseCRM. All rights
-              reserved.
-            </p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

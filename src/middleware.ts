@@ -5,7 +5,20 @@ import { getToken } from "./lib/auth";
 import { jwtDecode } from "jwt-decode"; // You'll need to install this package
 
 // Public routes that don't require authentication
-const publicRoutes = ["/", "/login", "/register", "/verify-email", "/forgot-password", "/reset-password"];
+const publicRoutes = [
+  "/",
+  "/login",
+  "/register",
+  "/verify-email",
+  "/forgot-password",
+  "/reset-password",
+  "/terms",
+  "/privacy",
+  "/about",
+  "/contact",
+  "/faq",
+  "/pricing",
+];
 
 // Role-based route access
 const roleBasedRoutes = {
@@ -36,9 +49,6 @@ export default async function middleware(request: NextRequest) {
         [key: string]: unknown; // Add other properties if needed
       }
       const decoded = jwtDecode<DecodedToken>(token);
-      console.log('====================================');
-      console.log(decoded);
-      console.log('====================================');
       const userRole = decoded.role;
 
       // Check role-based access

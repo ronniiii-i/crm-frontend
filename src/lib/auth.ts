@@ -8,7 +8,7 @@ export async function register(
   success: boolean;
   message: string;
 }> {
-  const res = await fetch("http://localhost:3030/auth/register", {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API}/auth/register`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ email, password, name }),
@@ -34,7 +34,7 @@ export async function login(
     isVerified: boolean;
   };
 }> {
-  const res = await fetch("http://localhost:3030/auth/login", {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API}/auth/login`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ email, password }),

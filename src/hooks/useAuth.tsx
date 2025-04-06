@@ -45,7 +45,7 @@ export function useAuth() {
   }, []);
 
   const verifyToken = async (token: string): Promise<User> => {
-    const res = await fetch("http://localhost:3030/auth/verify", {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API}/auth/verify`, {
       headers: { Authorization: `Bearer ${token}` },
     });
     if (!res.ok) throw new Error("Invalid token");

@@ -5,8 +5,8 @@ import { geistSans, geistMono } from "@/lib/fonts";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "CRM - Your Business Hub",
-  description: "A powerful CRM system for business management.",
+  title: "EnterpriseCRM Intranet",
+  description: "Complete Business Management Solution",
 };
 
 export default function RootLayout({

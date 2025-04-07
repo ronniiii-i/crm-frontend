@@ -25,8 +25,8 @@ export default function Home() {
       <Navbar />
 
       {/* Hero Section */}
-      <div className="relative bg-white dark:bg-gray-800 overflow-hidden">
-        <div className="max-w-7xl mx-auto">
+      <div className="relative flex flex-col lg:flex-row bg-white dark:bg-gray-800 overflow-hidden">
+        <div className="max-w-7xl flex-1 mx-auto">
           <div className="relative z-10 pb-8 bg-white dark:bg-gray-800 sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32">
             <main className="mt-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
               <div className="sm:text-center lg:text-left">
@@ -63,13 +63,15 @@ export default function Home() {
             </main>
           </div>
         </div>
-        <div className="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2 z-10">
+        <div className=" flex-1 lg:inset-y-0 lg:right-0 lg:w-1/2 z-10">
           <Image
             className="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full"
             src="https://picsum.photos/1600/900?random=1"
             alt="CRM dashboard"
             width={1600}
             height={900}
+            priority
+            unoptimized
           />
         </div>
       </div>
@@ -338,7 +340,7 @@ export default function Home() {
       </div>
 
       {/* CTA Section */}
-      <div className="bg-blue-700">
+      <div className="bg-blue-800">
         <div className="max-w-2xl mx-auto text-center py-16 px-4 sm:py-20 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-extrabold text-white sm:text-4xl">
             <span className="block">Ready to transform your business?</span>

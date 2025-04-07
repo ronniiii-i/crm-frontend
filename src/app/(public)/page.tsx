@@ -1,6 +1,20 @@
 // app/page.tsx
 import Link from "next/link";
 import Image from "next/image";
+import {
+  Users,
+  ClipboardList,
+  IdCard as Identification,
+  BarChart as ChartBar,
+  CreditCard,
+  Truck,
+  Archive,
+  Lock as LockClosed,
+  Building as OfficeBuilding,
+  ShieldCheck,
+  Cog,
+  PlusCircle,
+} from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
@@ -202,62 +216,62 @@ export default function Home() {
               {[
                 {
                   name: "Contact Management",
-                  icon: "users",
+                  icon: <Users className="w-5 h-5 text-white" />,
                   desc: "Centralize all customer interactions and communication history",
                 },
                 {
                   name: "Project Management",
-                  icon: "clipboard-list",
+                  icon: <ClipboardList className="w-5 h-5 text-white" />,
                   desc: "Plan, track, and collaborate on projects with your team",
                 },
                 {
                   name: "HR Management",
-                  icon: "identification",
+                  icon: <Identification className="w-5 h-5 text-white" />,
                   desc: "Manage employees, payroll, benefits, and performance",
                 },
                 {
                   name: "Business Intelligence",
-                  icon: "chart-bar",
+                  icon: <ChartBar className="w-5 h-5 text-white" />,
                   desc: "Advanced analytics and reporting for data-driven decisions",
                 },
                 {
                   name: "Account Management",
-                  icon: "credit-card",
+                  icon: <CreditCard className="w-5 h-5 text-white" />,
                   desc: "Track financial transactions, invoices, and payments",
                 },
                 {
                   name: "Supply Chain",
-                  icon: "truck",
+                  icon: <Truck className="w-5 h-5 text-white" />,
                   desc: "Manage vendors, procurement, and logistics operations",
                 },
                 {
                   name: "Materials Inventory",
-                  icon: "archive",
+                  icon: <Archive className="w-5 h-5 text-white" />,
                   desc: "Real-time tracking of stock levels and inventory movement",
                 },
                 {
                   name: "Access Control",
-                  icon: "lock-closed",
+                  icon: <LockClosed className="w-5 h-5 text-white" />,
                   desc: "Granular permissions and security management",
                 },
                 {
                   name: "Office Administration",
-                  icon: "office-building",
+                  icon: <OfficeBuilding className="w-5 h-5 text-white" />,
                   desc: "Facilities management and administrative tools",
                 },
                 {
                   name: "Health and Safety",
-                  icon: "shield-check",
+                  icon: <ShieldCheck className="w-5 h-5 text-white" />,
                   desc: "Compliance tracking and incident management",
                 },
                 {
                   name: "Settings",
-                  icon: "cog",
+                  icon: <Cog className="w-5 h-5 text-white" />,
                   desc: "System configuration and customization options",
                 },
                 {
                   name: "Additional Modules",
-                  icon: "plus-circle",
+                  icon: <PlusCircle className="w-5 h-5 text-white" />,
                   desc: "Expandable platform with room for future growth",
                 },
               ].map((module) => (
@@ -266,7 +280,7 @@ export default function Home() {
                     <div className="-mt-6">
                       <div>
                         <span className="inline-flex items-center justify-center p-3 bg-blue-500 rounded-md shadow-lg">
-                          <svg
+                          {/* <svg
                             className="h-6 w-6 text-white"
                             fill="none"
                             viewBox="0 0 24 24"
@@ -278,7 +292,8 @@ export default function Home() {
                               strokeWidth={2}
                               d={`M12 6v6m0 0v6m0-6h6m-6 0H6`}
                             />
-                          </svg>
+                          </svg> */}
+                          {module.icon}
                         </span>
                       </div>
                       <h3 className="mt-8 text-lg font-medium text-gray-900 dark:text-white tracking-tight">

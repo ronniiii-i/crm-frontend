@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import Image from "next/image";
 
 export default function About() {
   return (
@@ -61,10 +62,12 @@ export default function About() {
               <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 lg:grid-cols-4">
                 {[...Array(4)].map((_, i) => (
                   <div key={i} className="text-center">
-                    <img
-                      className="mx-auto h-24 w-24 rounded-full"
+                    <Image
+                      className="mx-auto rounded-full"
                       src={`https://picsum.photos/200/200?random=${i}`}
                       alt="Team member"
+                      width={96}
+                      height={96}
                     />
                     <h3 className="mt-4 text-lg font-medium text-gray-900 dark:text-white">
                       Team Member {i + 1}

@@ -5,11 +5,43 @@ import { useState } from "react";
 import Link from "next/link";
 import { useAuth } from "@/hooks/useAuth";
 import { Loader2 } from "lucide-react";
+import { useRoleAccess } from "@/hooks/useRoleAccess";
+import { ALL_MODULES } from "@/lib/modules";
+import { Card } from "@/components/ui/card";
+import {
+  LayoutDashboard,
+  Users,
+  FolderKanban,
+  Briefcase,
+  BarChart,
+  Wallet,
+  Truck,
+  Package,
+  Settings,
+  Home,
+  Shield,
+} from "lucide-react";
+import Image from "next/image";
+
+const iconComponents = {
+  users: Users,
+  "folder-kanban": FolderKanban,
+  briefcase: Briefcase,
+  "bar-chart": BarChart,
+  wallet: Wallet,
+  truck: Truck,
+  package: Package,
+  settings: Settings,
+  home: Home,
+  shield: Shield,
+};
 
 export default function DashboardPage() {
   const { logout, isLoading, token, user } = useAuth();
   const [isLoggingOut, setIsLoggingOut] = useState(false);
   const [logoutError, setLogoutError] = useState("");
+  const { getAccessibleModules, userRole } = useRoleAccess();
+  const modules = getAccessibleModules();
 
   const handleLogout = async () => {
     setLogoutError("");

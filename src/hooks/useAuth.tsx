@@ -15,6 +15,8 @@ interface User {
   role: string;
   isVerified: boolean;
   name?: string;
+  departments?: string[];
+  managedDepartments?: string[];
 }
 
 export function useAuth() {

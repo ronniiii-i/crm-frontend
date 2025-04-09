@@ -1,5 +1,6 @@
 // src/app/layout.tsx
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/react";
 import { geistSans, geistMono } from "@/lib/fonts";
 // import { CaptchaProvider } from "@/providers/captcha-provider";
 import "./globals.css";
@@ -27,6 +28,7 @@ export default function RootLayout({
         {children}
       {/* </CaptchaProvider> */}
       </body>
+      <Analytics />
     </html>
   );
 }

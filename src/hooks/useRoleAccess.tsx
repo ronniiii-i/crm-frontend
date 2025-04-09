@@ -2,7 +2,10 @@
 "use client";
 
 import { useAuth } from "./useAuth";
-import { Department, ALL_MODULES, Module } from "@/lib/modules";
+import {
+  // Department,
+  ALL_MODULES, Module
+} from "@/lib/modules";
 
 export enum AccessLevel {
   ADMIN = "ADMIN",

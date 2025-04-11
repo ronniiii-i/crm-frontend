@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useAuth } from "@/hooks/useAuth";
 import { Loader2 } from "lucide-react";
 import { useRoleAccess } from "@/hooks/useRoleAccess";
-// import { ALL_MODULES } from "@/lib/modules";
+// import { Department } from "@/lib/modules";
 import { Card } from "@/components/ui/card";
 import {
   LayoutDashboard,
@@ -40,7 +40,7 @@ export default function DashboardPage() {
   const { logout, isLoading, token, user } = useAuth();
   const [isLoggingOut, setIsLoggingOut] = useState(false);
   const [logoutError, setLogoutError] = useState("");
-  const { getAccessibleModules, userRole } = useRoleAccess();
+  const { getAccessibleModules } = useRoleAccess();
   const modules = getAccessibleModules();
 
   const handleLogout = async () => {
@@ -150,11 +150,12 @@ export default function DashboardPage() {
           <h1 className="text-3xl font-bold">Dashboard</h1>
           <p className="text-muted-foreground">
             Welcome back!{" "}
-            {userRole === "ADMIN"
+            {/* {userRole === "ADMIN"
               ? "Administrator"
               : userRole === "MANAGER"
               ? "Manager"
-              : "User"}
+              : "User"} */}
+            {user?.name}
           </p>
         </div>
 
@@ -172,7 +173,9 @@ export default function DashboardPage() {
                     </div>
                     <h3 className="font-medium">{module.name}</h3>
                     <p className="text-sm text-muted-foreground">
-                      {module.department || "All Departments"}
+                      <span className="text-sm text-muted-foreground">
+                        {module.department || "All Departments"}
+                      </span>
                     </p>
                   </div>
                 </Card>

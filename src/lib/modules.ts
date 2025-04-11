@@ -8,13 +8,13 @@ export type Module = {
 };
 
 export enum Department {
-  ADMINISTRATION = "ADMINISTRATION",
-  HR = "HUMAN_RESOURCES",
-  SALES = "SALES",
-  OPERATIONS = "OPERATIONS",
-  FINANCE = "FINANCE",
-  IT = "INFORMATION_TECHNOLOGY",
-  CUSTOMER_SERVICE = "CUSTOMER_SERVICE",
+  ADMINISTRATION = "Administration",
+  HUMAN_RESOURCES = "Human Resources",
+  SALES = "Sales",
+  OPERATIONS = "Operations",
+  FINANCE = "Finance",
+  IT = "IT",
+  CUSTOMER_SERVICE = "Customer Service",
 }
 
 export const ALL_MODULES: Module[] = [
@@ -37,7 +37,7 @@ export const ALL_MODULES: Module[] = [
     name: "HR Management",
     icon: "briefcase",
     path: "/hr",
-    department: Department.HR,
+    department: Department.HUMAN_RESOURCES,
   },
   {
     id: "analytics",
@@ -85,6 +85,6 @@ export const ALL_MODULES: Module[] = [
     name: "Health & Safety",
     icon: "shield",
     path: "/safety",
-    department: Department.HR,
+    department: Department.HUMAN_RESOURCES,
   },
 ];

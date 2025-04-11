@@ -30,8 +30,17 @@ export async function login(
   user: {
     id: string;
     email: string;
+    name: string;
     role: string;
     isVerified: boolean;
+    departments: {
+      id: string;
+      name: string;
+    }[];
+    managedDepts: {
+      id: string;
+      name: string;
+    }[];
   };
 }> {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API}/auth/login`, {
@@ -47,14 +56,29 @@ export async function login(
   }
 
   const data = await res.json();
+
+  // Ensure the response has the expected structure
+  const formattedResponse = {
+    accessToken: data.accessToken,
+    user: {
+      id: data.user.id,
+      email: data.user.email,
+      name: data.user.name,
+      role: data.user.role,
+      isVerified: data.user.isVerified,
+      departments: data.user.departments || [],
+      managedDepts: data.user.managedDepts || [],
+    },
+  };
+
   if (typeof window !== "undefined") {
-    document.cookie = `token=${data.accessToken}; Path=/; Secure; SameSite=Strict`;
-    localStorage.setItem("token", data.accessToken);
+    document.cookie = `token=${formattedResponse.accessToken}; Path=/; Secure; SameSite=Strict`;
+    localStorage.setItem("token", formattedResponse.accessToken);
+    localStorage.setItem("auth_user", JSON.stringify(formattedResponse.user));
   }
 
-  return data;
+  return formattedResponse;
 }
-
 
 export function getToken(request?: NextRequest) {
   if (request) {

@@ -4,7 +4,8 @@
 import { useAuth } from "./useAuth";
 import {
   // Department,
-  ALL_MODULES, Module
+  ALL_MODULES,
+  Module,
 } from "@/lib/modules";
 
 export enum AccessLevel {
@@ -45,27 +46,34 @@ export function useRoleAccess() {
     };
   };
 
+  // Update the getAccessibleModules function
   const getAccessibleModules = (): Module[] => {
     if (user.role === AccessLevel.ADMIN) {
       return ALL_MODULES;
     }
 
+    const userDeptNames = user.departments?.map((dept) => dept.name) || [];
+    const managedDeptNames = user.managedDepts?.map((dept) => dept.name) || [];
+
     if (user.role === AccessLevel.MANAGER) {
       return ALL_MODULES.filter(
         (module) =>
           !module.department || // Modules available to all
-          module.department === user.department || // User's department modules
-          module.id === "analytics" // Example of cross-department module
+          userDeptNames.includes(module.department) ||
+          managedDeptNames.includes(module.department) ||
+          module.id === "analytics" // Cross-department module
       );
     }
 
     // For regular users
     return ALL_MODULES.filter(
       (module) =>
-        !module.department || // Modules available to all
-        module.department === user.department // Only their department
+        !module.department || userDeptNames.includes(module.department)
     );
   };
+  const modules = getAccessibleModules();
+  console.log("Accessible modules:", modules);
+  console.log("User department:", user.departments);
 
   return {
     userRole: user.role as AccessLevel,

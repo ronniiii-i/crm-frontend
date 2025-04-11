@@ -5,11 +5,43 @@ import { useState } from "react";
 import Link from "next/link";
 import { useAuth } from "@/hooks/useAuth";
 import { Loader2 } from "lucide-react";
+import { useRoleAccess } from "@/hooks/useRoleAccess";
+// import { Department } from "@/lib/modules";
+import { Card } from "@/components/ui/card";
+import {
+  LayoutDashboard,
+  Users,
+  FolderKanban,
+  Briefcase,
+  BarChart,
+  Wallet,
+  Truck,
+  Package,
+  Settings,
+  Home,
+  Shield,
+} from "lucide-react";
+import Image from "next/image";
+
+const iconComponents = {
+  users: Users,
+  "folder-kanban": FolderKanban,
+  briefcase: Briefcase,
+  "bar-chart": BarChart,
+  wallet: Wallet,
+  truck: Truck,
+  package: Package,
+  settings: Settings,
+  home: Home,
+  shield: Shield,
+};
 
 export default function DashboardPage() {
   const { logout, isLoading, token, user } = useAuth();
   const [isLoggingOut, setIsLoggingOut] = useState(false);
   const [logoutError, setLogoutError] = useState("");
+  const { getAccessibleModules } = useRoleAccess();
+  const modules = getAccessibleModules();
 
   const handleLogout = async () => {
     setLogoutError("");
@@ -113,11 +145,69 @@ export default function DashboardPage() {
       )}
 
       {/* Rest of your dashboard content */}
-      <div className="flex-1 py-4 px-8">
-        <h2 className="text-xl font-semibold mb-4">
-          Welcome to your Dashboard
-        </h2>
-        {/* Add your dashboard content here */}
+      <div className="container mx-auto px-8 py-4">
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold">Dashboard</h1>
+          <p className="text-muted-foreground">
+            Welcome back!{" "}
+            {/* {userRole === "ADMIN"
+              ? "Administrator"
+              : userRole === "MANAGER"
+              ? "Manager"
+              : "User"} */}
+            {user?.name}
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {modules.map((module) => {
+            const IconComponent =
+              iconComponents[module.icon as keyof typeof iconComponents] ||
+              LayoutDashboard;
+            return (
+              <Link key={module.id} href={module.path} passHref>
+                <Card className="p-6 hover:bg-accent transition-colors cursor-pointer h-full">
+                  <div className="flex flex-col items-center text-center gap-4">
+                    <div className="p-3 rounded-full bg-primary/10 text-primary">
+                      <IconComponent className="w-6 h-6" />
+                    </div>
+                    <h3 className="font-medium">{module.name}</h3>
+                    <p className="text-sm text-muted-foreground">
+                      <span className="text-sm text-muted-foreground">
+                        {module.department || "All Departments"}
+                      </span>
+                    </p>
+                  </div>
+                </Card>
+              </Link>
+            );
+          })}
+        </div>
+
+        {/* Recent Activity Section */}
+        <section className="mt-12">
+          <h2 className="text-2xl font-bold mb-4">Recent Activity</h2>
+          <Card className="p-6">
+            <div className="space-y-4">
+              {/* Placeholder for activity items */}
+              <div className="flex items-center gap-4">
+                <div className="rounded-full overflow-hidden">
+                  <Image
+                    src="https://picsum.photos/50/50"
+                    width={40}
+                    height={40}
+                    alt="User"
+                    className="rounded-full"
+                  />
+                </div>
+                <div>
+                  <p className="font-medium">New project created</p>
+                  <p className="text-sm text-muted-foreground">2 hours ago</p>
+                </div>
+              </div>
+            </div>
+          </Card>
+        </section>
       </div>
     </div>
   );
